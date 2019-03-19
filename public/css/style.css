@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+}
+
+
+.bg-welcome {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/images/fashion-shirt.jpg');
+    min-height: 350px;
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+.bg-login {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/images/fashion-clothes.jpg');
+    min-height: 350px;
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+h1.bg {
+    color: white;
+}
+
+img.weather {
+    height: 200px;
+}
+
+.weather {
+    font-size: 3em;
+}
+
+.down {
+    transform: translateY(34%);
+}
+
+.header {
+    color: dimgrey;
+}
+
+a.btn {
+    max-height: 40px;
+}
+
+.preview {
+    max-width: 14em;
+}
