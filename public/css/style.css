@@ -2,6 +2,12 @@ html, body {
     height: 100%;
 }
 
+/*
+ *body {
+ *        background-image: url(/images/t-shirt2.svg);
+ *        background-size: 2.5%;
+ *}
+ */
 
 .bg-welcome {
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/images/fashion-shirt.jpg');

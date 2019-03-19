@@ -4,6 +4,14 @@
 <div class="container mt-4">
     <div class="row">
         <h1 class="header">
+            Inserisci il tuo outfit di oggi manualmente
+        </h1>
+        <a href="{{ route('outfit.oggi') }}" class="ml-auto btn btn-primary">
+            Inserisci
+        </a>
+    </div>
+    <div class="row">
+        <h1 class="header">
             Consigli del giorno
         </h1>
     </div>
@@ -12,21 +20,13 @@
             @php
                 $vestiti = $consigli[$i]['comb'];
             @endphp
+            <div class="row">
             @foreach ($vestiti as $vestito)
-                <div class="offset-1 col-3 border shadow-small my-3">
-                    <div class="my-2 text-center">
-                        <img class="preview" src="/images/{{ $vestito->immagine }}" />
-                        <h2>
-                            <a href="{{ route('vestiti.mostra',
-                                            ['vestito' => $vestito]) }}">
-                                {{ $vestito->nome }}
-                            </a>
-                        </h2> 
-                        <div class="w-100"></div>
-                        <h3 class="header">{{ $vestito->tipo->nome }}</h3> 
-                    </div>
+                <div class="ml-auto mr-auto col-12 col-lg-3 offset-lg-1 my-3">
+                    @include ('vestiti.vestito', ['vestito' => $vestito])
                 </div>
             @endforeach
+            </div>
         @endfor
     </div>
 </div>
