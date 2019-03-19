@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class OutfitController extends Controller
 {
+
+    public function oggi(Request $request)
+    {
+        return view('outfit.oggi', [
+            'vestito' => Auth::user()->vestiti[0],
+            'tipi' => \App\Tipo::all(),
+        ]);
+    }
+
     public function consiglio()
     {
         $temp = 15; //TODO leggere la temperatura da qualche parte

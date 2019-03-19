@@ -38,4 +38,12 @@ class VestitiController extends Controller
     {
         dump($vestito);
     }
+
+    public function tipo(Request $request, \App\Tipo $tipo)
+    {
+        $vestiti = $tipo->vestiti()
+                         ->where('user_id', '=', Auth::user()->id)
+                         ->get();
+        return response()->json($vestiti);
+    }
 }

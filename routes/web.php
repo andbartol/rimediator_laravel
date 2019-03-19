@@ -25,9 +25,12 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/vestiti/aggiungi', 'VestitiController@aggiungi')->name('vestiti.aggiungi');
     Route::post('/vestiti/aggiungi', 'VestitiController@aggiungi_post');
+    Route::get('/vestiti/tipo/{tipo}', 'VestitiController@tipo')->name('vestiti.tipi');
 
     Route::get('/vestiti/{vestito}', 'VestitiController@mostra')->name('vestiti.mostra')
             ->middleware('can:view,vestito');
 
     Route::get('/consiglio', 'OutfitController@consiglio')->name('consiglio');
+
+    Route::get('/outift/oggi', 'OutfitController@oggi')->name('outfit.oggi');
 });
