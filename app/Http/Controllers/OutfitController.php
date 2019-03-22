@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 
 class OutfitController extends Controller
 {
@@ -38,7 +39,7 @@ class OutfitController extends Controller
 
     public function consiglio()
     {
-        $temp = 15; //TODO leggere la temperatura da qualche parte
+        $temp = self::getTemperaturaMedia();
         $outfits = \App\Outfit::where('temp_min', '<=', $temp)
             ->where('temp_max', '>=', $temp)->get();
         $outfits = self::filtraOutfits($outfits);
@@ -59,6 +60,7 @@ class OutfitController extends Controller
 
         return view('consiglio', ['consigli' => $consigli]);
     }
+
 
     // Calcola il numero di indossature di una combinazione di vestiti
     //
@@ -128,6 +130,24 @@ class OutfitController extends Controller
                 return false;
         }
         return true;
+    }
+
+    // Richiede ad OpenWeather i dati per le previsioni
+    // di domani
+    // return: la temperatura media su tutto il giorno
+    // TODO: Fare la richiesta asincrona?
+    private static function getTemperaturaMedia()
+    {
+        $client = new Client(['timeout' => 0.5]);
+        $resp = $client->get('http://api.openweathermap.org/data/2.5/forecast?lat=44.4965578&lon=11.3709479&units=metric&appid=8fb8a4ac0144a800105ba86689e028ee');
+        $resp = json_decode($resp->getBody());
+        $media = 0;
+        foreach ($resp->list as $prev)
+        {
+            $media += $prev->main->temp;
+        }
+        $media /= count($resp->list);
+        return $media;
     }
 
     public static function cartesian($set)
