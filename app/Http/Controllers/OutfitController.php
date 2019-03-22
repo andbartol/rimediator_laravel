@@ -11,9 +11,29 @@ class OutfitController extends Controller
     public function oggi(Request $request)
     {
         return view('outfit.oggi', [
-            'vestito' => Auth::user()->vestiti[0],
-            'tipi' => \App\Tipo::all(),
+            'tipi' => \App\Tipo::all()->toJson(),
         ]);
+    }
+
+    public function insertOggi(Request $request)
+    {
+        $indossato = new \App\Indossato();
+
+        $vestiti = $request->input('vestito.*');
+        $vestiti = array_map(function($v) {
+            return \App\Vestito::where('id','=',$v)
+                ->where('user_id','=',Auth::user()->id)
+                ->first();
+        }, $vestiti);
+        $indossato->data = \Carbon\Carbon::now();
+        $indossato->lavato = false;
+        $indossato->save();
+
+        foreach ($vestiti as $vestito)
+        {
+            $indossato->vestiti()->attach($vestito);
+        }
+        return redirect()->route('home');
     }
 
     public function consiglio()

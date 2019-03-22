@@ -33,4 +33,5 @@ Route::middleware('auth')->group(function() {
     Route::get('/consiglio', 'OutfitController@consiglio')->name('consiglio');
 
     Route::get('/outift/oggi', 'OutfitController@oggi')->name('outfit.oggi');
+    Route::post('/outift/oggi', 'OutfitController@insertOggi');
 });
