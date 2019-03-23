@@ -34,4 +34,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/outift/oggi', 'OutfitController@oggi')->name('outfit.oggi');
     Route::post('/outift/oggi', 'OutfitController@insertOggi');
+
+    Route::get('/settings', 'SettingsController@view')->name('settings');
+    Route::post('/settings', 'SettingsController@save');
 });
