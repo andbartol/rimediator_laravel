@@ -15,8 +15,8 @@ class CreateSettings extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigInteger('user_id')->primary()->unsigned();
-            $table->decimal('latitude', 15,12)->nullable();
-            $table->decimal('longitude', 15,12)->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }
